@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "product": {
+            "title": "Notebooks",
+            "description": "SO: Windows",
+            "price": 250,
+            "thumbnail": "./path",
+            "code": "A1",
+            "stock": 25,
+            "status": true,
+            "category": ""
+        }
+    },
+    {
+        "id": 2,
+        "product": {
+            "title": "Equipos de audio",
+            "description": "Mini parlantes",
+            "price": 1100,
+            "thumbnail": "./path",
+            "code": "A2",
+            "stock": 5,
+            "status": true,
+            "category": ""
+        }
+    },
+
+    {
+        "id": 3,
+        "product": {
+            "title": "Monitores",
+            "description": "27' pulgadas",
+            "price": 150,
+            "thumbnail": "./path",
+            "code": "A3",
+            "stock": 15,
+            "status": true,
+            "category": ""
+        }
+    },
+    {
+        "id": 4,
+        "product": {
+            "title": "Mouse y Teclados",
+            "description": "Combos inalambricos",
+            "price": 50,
+            "thumbnail": "./path",
+            "code": "A4",
+            "stock": 10,
+            "status": true,
+            "category": ""
+        }
+    }
+    
+]

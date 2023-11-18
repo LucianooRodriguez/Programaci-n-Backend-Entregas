@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "First Cart",
+        "products": [
+            {
+                "product": 2,
+                "quantity": 2
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Second Cart",
+        "products": []
+    }
+]
