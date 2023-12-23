@@ -8,10 +8,11 @@ const cookieParser = require('cookie-parser')
 const session = require("express-session")
 const FileStore = require("session-file-store")(session)
 const MongoStore = require("connect-mongo")
+const passport = require("passport")
+const { initializePassport } = require("./config/passport/passport")
 
 //DB config
 const db = require('./db.js')
-
 //Routers
 const productsRouter = require('./routers/products.router.js')
 const cartRouter = require('./routers/carts.router.js')
@@ -21,29 +22,23 @@ const loginRouter = require('./routers/auth.router.js')
 
 // Express and port
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3000
+
 //Http Server 
 const server = http.createServer(app)
 //Socket
 const io = new Server(server)
-
-
-
 //public
 app.use(express.static(path.resolve(__dirname, "../src/public")))
-
 //Views
 app.engine('handlebars', handlebars.engine())
 app.set('views', path.resolve(__dirname, "../src/views"))
 app.set('view engine', 'handlebars')
 /* MULTER */
 //const filesRouter = require('../routers/files.router.js')
-
 //Middlewares
-
 //Cookies
 app.use(cookieParser('coderSecret'))
-
 //Session
 app.use(session({
     store: MongoStore.create({
@@ -53,9 +48,13 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+//Passport
+initializePassport()
+app.use(passport.initialize())
+app.use(passport.session())
 
 //Routes
 app.use(productsRouter)
