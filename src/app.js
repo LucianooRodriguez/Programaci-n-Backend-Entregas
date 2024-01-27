@@ -1,5 +1,7 @@
 //Dependencies
 const express = require('express')
+
+
 const handlebars = require('express-handlebars')
 const http = require('http')
 const { Server } = require('socket.io')
@@ -11,18 +13,22 @@ const MongoStore = require("connect-mongo")
 const passport = require("passport")
 const { initializePassport } = require("./config/passport/passport")
 
+
+require('dotenv').config({path: path.resolve(__dirname,"./.env")})
+const { Command } = require('commander')
+
 //DB config
 const db = require('./db.js')
+
 //Routers
-const productsRouter = require('./routers/products.router.js')
-const cartRouter = require('./routers/carts.router.js')
-const homeRouter = require('./routers/home.router.js')
-const chatRouter = require('./routers/chat.router.js')
-const loginRouter = require('./routers/auth.router.js')
+const productsRouter = require('./routing/products.router.js')
+const cartRouter = require('./routing/carts.router.js')
+const homeRouter = require('./routing/home.router.js')
+const chatRouter = require('./routing/chat.router.js')
+const loginRouter = require('./routing/auth.router.js')
 
 // Express and port
 const app = express()
-const PORT = process.env.PORT || 3000
 
 //Http Server 
 const server = http.createServer(app)
@@ -50,12 +56,10 @@ app.use(session({
 }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
 //Passport
 initializePassport()
 app.use(passport.initialize())
 app.use(passport.session())
-
 //Routes
 app.use(productsRouter)
 app.use(cartRouter)
@@ -74,25 +78,27 @@ io.on('connection', (socket) => {
     //Request Products
     socket.on("req-products", (data) => {
         productModel.find()
-        .then((products) => {
-            socket.emit("res-products", { products: products })
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+            .then((products) => {
+                socket.emit("res-products", { products: products })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     })
+
     //Cancel New Product
     socket.on("np-cancel", (data) => {
         io.emit("clear-np-screen", {})
-        productModel.find()
-        .then((products) => {
-            socket.emit("res-products", { products: products })
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-        
+        productModel.find()       
+            .then((products) => {
+                socket.emit("res-products", { products: products })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
     })
+
     //Add a New Product
     socket.on("add-product", (data) => {
         //prManager.addProduct(data)
@@ -100,16 +106,18 @@ io.on('connection', (socket) => {
         let newprod = prManager.getProductByCode(data.code)
         console.log(newprod)
         //productModel.create(newprod)
+
         socket.emit("clear-np-screen", {})
         productModel.find()
-        .then((products) => {
-            io.sockets.emit("res-products", { products: products })
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-        
+            .then((products) => {
+                io.sockets.emit("res-products", { products: products })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
     })
+
     socket.on("new-message", (data) => {
         const messageModel = require("./dao/models/message.model.js")
         messages.push(data)
@@ -117,7 +125,21 @@ io.on('connection', (socket) => {
         io.sockets.emit("message-all", messages)
     })
 })
+
+
+const program = new Command()
+program
+    .option('-d', 'Variable para hacer debug', false)
+    .option('-p <port>', 'Server Port', 8080)
+    .option('-m <mode>', 'Ambiente de trabajo', 'produccion')
+    .requiredOption('-u <user>', 'User', 'No se declaro el usuario')
+program.parse()
+
+//console.log(program.opts())
+
+
 db.connect()
-server.listen(PORT, (req, res) => {
-    console.log("Server running on  port ", PORT)
+
+server.listen(process.env.PORT, (req, res) => {
+    console.log("Server running on  port ", process.env.PORT)
 })
