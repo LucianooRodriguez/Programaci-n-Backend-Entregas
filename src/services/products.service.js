@@ -1,6 +1,5 @@
-
-const productModel = require('../dao/models/products.model')
-const Product = require("../dao/fileSystem/Product.js")
+const productModel = require('../models/products.schema')
+const Product = require("../models/dao/memory/Product.js")
 
 const getProductDBIdService = async (id) => {
     let data = await productModel.find({ id: id })
@@ -10,10 +9,8 @@ const getProductDBIdService = async (id) => {
         .catch((err) => {
             console.log(err)
         })
-
     return data
 }
-
 const getProductsService = async (category = "", limit = "", page = "", price = "", sort = "") => {
     let data = []
     if (category != "") {
@@ -21,10 +18,8 @@ const getProductsService = async (category = "", limit = "", page = "", price = 
     } else {
         data = await productModel.paginate({}, { limit: parseInt(limit), page: parseInt(page), sort: { price: parseInt(sort) } })
     }
-
     return data
 }
-
 const getProductByIdService = async (id) => {
     console.log(id)
     let data = await productModel.findOne({ id: id })
@@ -36,14 +31,10 @@ const getProductByIdService = async (id) => {
         })
     return data
 }
-
 const createProductService = (title = "", description = "", price = "", thumbnail = "", code = "", status = "", stock = "", category = "") => {
     let newProduct = new Product(title, description, price, thumbnail, code, status, stock, category)
     productModel.create(newProduct)
 }
-
-
-
 module.exports = {
     getProductDBIdService,
     getProductsService,
