@@ -8,6 +8,7 @@ class CartController {
             const response = successResponse(carts)
             res.status(200).json(response)
         } catch (err) {
+            req.logger.error(err)
             next(err)
         }
     }
@@ -17,6 +18,7 @@ class CartController {
             const response = successResponse(cart)
             res.status(200).json(response)
         } catch (err) {
+            req.logger.error(err)
             next(err)
         }
     }
@@ -31,6 +33,7 @@ class CartController {
             const response = successResponse(newCart)
             res.status(200).json(response)
         } catch (err) {
+            req.logger.error(err)
             next(err)
         }
     }
@@ -40,8 +43,10 @@ class CartController {
             payload.name = req.params.uid
             payload.products = []
             const newCart = await cartRepository.saveCart(payload)
+
             res.redirect("/api/users/addCart/" + req.params.uid + "/" + newCart._id.toString())
         } catch (err) {
+            req.logger.error(err)
             next(err)
         }
     }
@@ -54,16 +59,17 @@ class CartController {
             const response = successResponse(data)
             res.status(200).json(response)
         } catch (err) {
+            req.logger.error(err)
             next(err)
         }
     }
-
     static confirmPurchase = async (req, res, next) => {
         try {
             let cart = await cartRepository.confirmPurchase(req.params.cid)
             const response = successResponse(cart)
             res.status(200).json(response)
         } catch (err) {
+            req.logger.error(err)
             next(err)
         }
     }
