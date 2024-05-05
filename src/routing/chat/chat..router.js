@@ -1,10 +1,7 @@
 const { Router } = require('express')
 const router = Router()
 
-
-
 const { isAuthorized } = require("../../middlewares/jwt.middleware")
-
 
 
 router.get('/', (req, res) => {

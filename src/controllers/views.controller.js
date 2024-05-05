@@ -12,7 +12,7 @@ class ViewsController {
         let products = await productService.getAll()
         let data
         data = { products: products }
-
+        
         res.render("products", data )
     }
 
