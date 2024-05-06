@@ -61,13 +61,13 @@ if (cluster.isPrimary) {
         definition: {
             openapi: '3.0.1',
             info: {
-                title: 'Doc MyProject',
-                description: "Projecto backend Coderhouse"
+                title: 'My proyecto back',
+                description: "Proyecto backend"
                 ,
                 contact: {
                     name: "soporte",
                     url: 'https://www.example.com.ar',
-                    email: 'iaanbifano@gmail.com'
+                    email: 'lucianoorodriguez1@gmail.com'
                 }
             }
         },

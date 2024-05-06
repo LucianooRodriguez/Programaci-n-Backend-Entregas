@@ -14,15 +14,15 @@ const transport = nodemailer.createTransport({
     service: 'gmail',
     port: 587,
     auth: {
-        user: 'lucianoorodriguez@outlook.es',
+        user: 'lucianoorodriguez1@gmail.com',
         pass: 'aijq eafu ukhv edxp'
     }
 })
 
 router.get('/restore-password',  async (req, res) => {
     let result = await transport.sendMail({
-        from: 'My Project <lucianoorodriguez@outlook.es>',
-        to: 'lucianoorodriguez@outlook.es',
+        from: 'My Project <lucianoorodriguez1@gmail.com>',
+        to: 'lucianoorodriguez1@gmail.com',
         subject: 'Restore Password',
         html: `
         <div>
