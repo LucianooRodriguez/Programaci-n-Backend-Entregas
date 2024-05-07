@@ -1,10 +1,10 @@
-const { Router } = require('express')
-const router = Router()
-const { authorization } = require("../../utils/passport")
-const { isAuthorized } = require("../../middlewares/jwt.middleware")
-const compression = require("express-compression")
+import { Router } from 'express'
+export const router = Router()
+import { authorization } from "../../utils/passport.js"
+import { isAuthorized } from "../../middlewares/jwt.middleware.js"
+import compression from "express-compression"
 
-const ProductController = require("../../controllers/products.controller")
+import {ProductController} from "../../controllers/products.controller.js"
 
 //Retorna todos los productos
 router.get('/', compression({ brotli: { enabled: true, zlib: {} } }), ProductController.getAll)
@@ -21,4 +21,3 @@ router.put('/:pid', isAuthorized, authorization("admin"), ProductController.upda
 //Elimina un producto
 router.delete('/:pid', isAuthorized, authorization("admin"), ProductController.deleteById)
 
-module.exports = router;

@@ -1,4 +1,4 @@
-class SaveProductDTO {
+export class SaveProductDTO {
     constructor(payload) {
         this.title = payload.title
         this.description = payload.description
@@ -12,4 +12,3 @@ class SaveProductDTO {
     }
 }
 
-module.exports = SaveProductDTO

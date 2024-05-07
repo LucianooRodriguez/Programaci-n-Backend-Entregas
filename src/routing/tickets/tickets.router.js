@@ -1,13 +1,11 @@
-const { Router } = require('express')
-const router = Router()
+import { Router } from 'express'
+export const router = Router()
 
-const TicketController = require("../../controllers/tickets.controller")
+import{ TicketController }from "../../controllers/tickets.controller.js"
 
-const { isAuthorized } = require("../../middlewares/jwt.middleware")
+import { isAuthorized } from "../../middlewares/jwt.middleware.js"
 
-const { authorization } = require("../../utils/passport")
+
 //Retorna todos los cart
 router.get('/', isAuthorized, TicketController.getAll)
 router.post('/', isAuthorized, TicketController.save)
-
-module.exports = router;

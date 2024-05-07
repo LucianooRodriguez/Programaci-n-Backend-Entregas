@@ -1,11 +1,11 @@
-const dotenv = require('dotenv')
-const path = require('path')
+import dotenv from 'dotenv'
+import path  from 'path'
 
-dotenv.config({path: path.resolve(__dirname,"../.env")})
+dotenv.config({path: "../.env"})
 
-const CONFIG = {
+export const CONFIG = {
     mongo: {
-        URI: process.env.MONGO_URI || ''
+        URI: process.env.MONGO_URI || 'mongodb+srv://lucianoorodriguez1:PKZdDQFYLyzJ7G33@ecommercecluster.eonxrvw.mongodb.net/ecommerce'
     },
     mailing: {
         SERVICE: process.env.MAILING_SERVICE || '',
@@ -17,8 +17,7 @@ const CONFIG = {
         SECRET: process.env.JWT_SECRET || ''
     },
     PORT: process.env.PORT || 8080,
-    DATASOURCE: process.env.DATASOURCE || '',
+    DATASOURCE: process.env.DATASOURCE || 'MONGO',
     ENVIRONMENT: process.env.ENVIRONMENT || 'prod'
 }
 
-module.exports = CONFIG 

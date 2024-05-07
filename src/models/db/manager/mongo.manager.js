@@ -1,8 +1,8 @@
-const mongoose = require("mongoose")
+import {mongoose} from "mongoose"
 
-const CONFIG = require("../../../config/config")
+import {CONFIG} from "../../../config/config.js"
 
-class MongoManager {
+export class MongoManager {
 
     static #instance
 
@@ -23,5 +23,3 @@ class MongoManager {
         return this.#instance
     }
 }
-
-module.exports = MongoManager

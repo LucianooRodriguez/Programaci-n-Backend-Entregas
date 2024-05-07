@@ -1,7 +1,7 @@
-const ticketModel = require('../../schema/tickets.schema')
-const MongoManager = require("../../db/manager/mongo.manager")
+import {ticketModel} from"../../schema/tickets.schema.js"
+import {MongoManager} from "../../db/manager/mongo.manager.js"
 
-class TicketsMongoDao {
+export class TicketsMongoDao {
     constructor() {
         MongoManager.start()
     }
@@ -16,4 +16,3 @@ class TicketsMongoDao {
     }
 }
 
-module.exports = TicketsMongoDao

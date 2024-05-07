@@ -1,12 +1,12 @@
-const { Router } = require('express')
-const router = Router()
-const path = require("path")
+import { Router } from 'express'
+export const router = Router()
+import path from "path"
 
-const passport = require("passport")
+import passport from "passport"
 
-const { createHash, isValidPassword } = require("../../utils/bcrypt")
+import { createHash, isValidPassword } from "../../utils/bcrypt.js"
 
-const AuthController = require("../../controllers/auth.controller")
+import {AuthController } from"../../controllers/auth.controller.js"
 
 router.get('/login', (req,res) => {
     res.render("login", {})
@@ -75,4 +75,3 @@ router.get("/", (req, res) => {
 
 })
 
-module.exports = router;

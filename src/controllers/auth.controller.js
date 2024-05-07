@@ -1,16 +1,15 @@
-const { errorResponse, successResponse } = require("../utils/utils")
 
-const { createHash, isValidPassword } = require("../utils/bcrypt")
-const passport = require("passport")
-const jwt = require("jsonwebtoken")
+import { isValidPassword } from "../utils/bcrypt.js"
 
-const CONFIG = require("../config/config")
+import jwt from "jsonwebtoken"
 
-const UserService = require("../models/services/users.service")
+import {CONFIG} from "../config/config.js"
+
+import {UserService} from "../models/services/users.service.js"
 
 const userService = new UserService()
 
-class AuthController {
+export class AuthController {
 
     static login = async (req, res, next) => {
 
@@ -54,4 +53,3 @@ class AuthController {
     }
 }
 
-module.exports = AuthController

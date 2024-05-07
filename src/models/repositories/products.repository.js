@@ -1,6 +1,6 @@
-const SaveProductDTO = require("../dto/products.dto")
+import { SaveProductDTO } from "../dto/products.dto.js"
 
-class ProductRepository {
+export class ProductRepository {
     constructor(productsDao) {
         this.dao = productsDao
     }
@@ -27,4 +27,3 @@ class ProductRepository {
     }
 }
 
-module.exports = ProductRepository

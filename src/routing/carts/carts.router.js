@@ -1,10 +1,8 @@
-const { Router } = require('express')
-const router = Router()
+import { Router } from 'express'
+export const router = Router()
 
-const CartController = require("../../controllers/carts.controller")
+import { CartController} from "../../controllers/carts.controller.js"
 
-
-const { isAuthorized } = require("../../middlewares/jwt.middleware")
 
 router.get('/', CartController.getAll)
 
@@ -16,5 +14,3 @@ router.post("/:cid/product/:pid", CartController.addProduct)
 
 router.post("/purchase/:cid", CartController.confirmPurchase)
 
-
-module.exports = router;

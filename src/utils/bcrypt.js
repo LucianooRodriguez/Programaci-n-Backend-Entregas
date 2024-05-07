@@ -1,14 +1,10 @@
-const bcrypt = require("bcrypt")
+import bcrypt from "bcrypt"
 
-const createHash = (data) => {
+export const createHash = (data) => {
     return bcrypt.hashSync(data, bcrypt.genSaltSync(10))
 }
 
-const isValidPassword = (user, password) => {
+export const isValidPassword = (user, password) => {
     return bcrypt.compareSync(password, user.password)
 }
 
-module.exports = {
-    createHash,
-    isValidPassword 
-}

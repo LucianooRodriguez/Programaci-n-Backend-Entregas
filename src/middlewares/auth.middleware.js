@@ -1,4 +1,4 @@
-const applyPolicy = (roles) => {
+export const applyPolicy = (roles) => {
     return (req, res, next) => {
         console.log(req.session.rol)
         if (!roles.includes(req.session.rol)) {
@@ -9,7 +9,7 @@ const applyPolicy = (roles) => {
     }
 }
 
-const isLogged = (req, res, next) => {
+export const isLogged = (req, res, next) => {
     if (req.user) {
         next()
     } else {
@@ -17,7 +17,3 @@ const isLogged = (req, res, next) => {
     }
 }
 
-module.exports = {
-    applyPolicy,
-    isLogged
-}

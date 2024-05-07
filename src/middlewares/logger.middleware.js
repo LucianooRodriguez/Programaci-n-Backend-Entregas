@@ -1,7 +1,7 @@
-const config = require('../config/config')
-const winston = require('winston')
+import { CONFIG as config } from '../config/config.js'
+import winston from 'winston'
 
-const logger = {
+export const logger = {
     dev: [
         new winston.transports.Console({level: 'debug'}),
         new winston .transports.File({filename: './logs.log'})
@@ -12,7 +12,7 @@ const logger = {
     ]
 }
 
-const addLogger = ( req,res, next) => {
+export const addLogger = ( req,res, next) => {
     req.logger = winston.createLogger({
         transports: logger[config.ENVIRONMENT]
     })
@@ -21,4 +21,3 @@ const addLogger = ( req,res, next) => {
     next()
 }
 
-module.exports = { addLogger } 

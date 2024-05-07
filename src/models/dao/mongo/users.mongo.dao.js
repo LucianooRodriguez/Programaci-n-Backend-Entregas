@@ -1,7 +1,7 @@
-const userModel = require('../../schema/users.schema')
-const MongoManager = require("../../db/manager/mongo.manager")
+import {userModel} from'../../schema/users.schema.js'
+import {MongoManager} from "../../db/manager/mongo.manager.js"
 
-class UsersMongoDao {
+export class UsersMongoDao {
     constructor() {
         MongoManager.start()
     }
@@ -33,4 +33,3 @@ class UsersMongoDao {
     }
 }
 
-module.exports = UsersMongoDao

@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-require("./tickets.schema")
+import {mongoose} from 'mongoose'
+import "./tickets.schema.js"
 
 const ticketsCollection = "Tickets"
 
@@ -18,6 +18,4 @@ const ticketSchema = new mongoose.Schema({
         type: String
     }
 })
-const ticketModel = mongoose.model(ticketsCollection, ticketSchema)
-
-module.exports = ticketModel 
+export const ticketModel = mongoose.model(ticketsCollection, ticketSchema)

@@ -1,10 +1,10 @@
-const mongoose = require('mongoose')
-require("./carts.schema")
-const mongoosePaginate = require("mongoose-paginate-v2")
+import {mongoose }from 'mongoose'
+import "./carts.schema.js"
+import mongoosePaginate from "mongoose-paginate-v2"
 
-const usersCollection = "Users"
+export const usersCollection = "Users"
 
-const userSchema = new mongoose.Schema({
+export const userSchema = new mongoose.Schema({
     name: {
         type: String,
     },
@@ -41,6 +41,5 @@ userSchema.pre("find",function() {
 })
 
 userSchema.plugin(mongoosePaginate)
-const userModel = mongoose.model(usersCollection, userSchema)
+export const userModel = mongoose.model(usersCollection, userSchema)
 
-module.exports = userModel

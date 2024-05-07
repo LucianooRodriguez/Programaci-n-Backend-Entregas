@@ -1,18 +1,20 @@
-const CONFIG = require("../../config/config")
-const ProductRepository = require("../repositories/products.repository")
+import { CONFIG } from "../../config/config.js"
+import { ProductRepository} from "../repositories/products.repository.js"
 
+import {ProductsMemoryDao} from "../dao/memory/products.memory.dao.js"
+import {ProductsMongoDao} from "../dao/mongo/products.mongo.dao.js"
 let productsDao
 
-class ProductService {
+export class ProductService {
     constructor() {
         switch (CONFIG.DATASOURCE) {
             case "MEMORY": {
-                const ProductsMemoryDao = require("../dao/memory/products.memory.dao")
+               
                 productsDao = new ProductsMemoryDao()
                 break
             }
             case "MONGO": {
-                const ProductsMongoDao = require("../dao/mongo/products.mongo.dao")
+                
                 productsDao = new ProductsMongoDao()
                 break
             }
@@ -24,4 +26,3 @@ class ProductService {
     }
 } 
 
-module.exports = ProductService

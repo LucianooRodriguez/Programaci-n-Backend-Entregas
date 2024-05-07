@@ -1,14 +1,14 @@
-/* const mongoose = require("mongoose")
+import mongoose from "mongoose"
 
 const DB_NAME = "ecommerce"
-const URL = "mongodb+srv://ianbifano:ecommercepass@ecommerce-cluster.bzmyj9n.mongodb.net/" + DB_NAME
+/*const URL = "mongodb+srv://lucianoorodriguez1:PKZdDQFYLyzJ7G33@ecommercecluster.eonxrvw.mongodb.net/" + DB_NAME*/
 
-module.exports = {
+module.exports={
     connect : () => {
-        return mongoose.connect(URL, {}).then((connection)=>{
+        return mongoose.connect("mongodb+srv://lucianoorodriguez1:PKZdDQFYLyzJ7G33@ecommercecluster.eonxrvw.mongodb.net/ecommerce;", {}).then((connection)=>{
             console.log("App connected to Database Successfully")
         }).catch((err)=>{
             console.log(err)
         })
     }
-}  */
+}  

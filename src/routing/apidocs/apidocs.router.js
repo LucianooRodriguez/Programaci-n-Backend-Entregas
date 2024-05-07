@@ -1,8 +1,9 @@
-const { Router } = require('express')
-const swaggerJSDoc = require('swagger-jsdoc')
-const swaggerUIExpress = require("swagger-ui-express")
+import { dirname } from 'path'
+import { Router } from 'express'
+import swaggerJSDoc from'swagger-jsdoc'
+import swaggerUIExpress from"swagger-ui-express"
 
-const router = Router()
+export const router = Router()
 
 const swaggerOptions={
     definition: {
@@ -14,14 +15,13 @@ const swaggerOptions={
         contact: {
             name: "soporte",
             url: 'https://www.example.com.ar',
-            email: 'iaanbifano@gmail.com'
+            email: 'lucianoorodriguez1@gmail.com'
         }
     },
-    apis: [`${__dirname}/docs/*.yaml`]
+    apis: [`${dirname}/docs/*.yaml`]
 }
 
 const specs = swaggerJSDoc(swaggerOptions)
 
 router.get('/', swaggerUIExpress.serve,swaggerUIExpress.setup(specs))
 
-module.exports = router;

@@ -1,18 +1,20 @@
-const CONFIG = require("../../config/config")
-const TicketRepository = require("../repositories/tickets.repository")
+import { CONFIG } from "../../config/config.js"
+import { TicketRepository} from "../repositories/tickets.repository.js"
 
+import {TicketsMemoryDao } from "../dao/memory/tickets.memory.dao.js"
+import {TicketsMongoDao} from"../dao/mongo/tickets.mongo.dao.js"
 let ticketsDao
 
-class TicketService {
+export class TicketService {
     constructor() {
         switch (CONFIG.DATASOURCE) {
             case "MEMORY": {
-                const TicketsMemoryDao = require("../dao/memory/tickets.memory.dao")
+                
                 ticketsDao = new TicketsMemoryDao()
                 break
             }
             case "MONGO": {
-                const TicketsMongoDao = require("../dao/mongo/tickets.mongo.dao")
+                
                 ticketsDao = new TicketsMongoDao()
                 break
             }
@@ -24,4 +26,3 @@ class TicketService {
     }
 } 
 
-module.exports = TicketService

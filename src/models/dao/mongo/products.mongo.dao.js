@@ -1,7 +1,7 @@
-const productModel = require('../../schema/products.schema')
-const MongoManager = require("../../db/manager/mongo.manager")
+import {productModel} from'../../schema/products.schema.js'
+import {MongoManager} from "../../db/manager/mongo.manager.js"
 
-class ProductsMongoDao {
+export class ProductsMongoDao {
     constructor() {
         MongoManager.start()
     }
@@ -34,4 +34,3 @@ class ProductsMongoDao {
     }
 }
 
-module.exports = ProductsMongoDao

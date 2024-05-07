@@ -1,6 +1,6 @@
-const SaveMessageDTO = require("../dto/messages.dto")
+import {SaveMessageDTO }from "../dto/messages.dto.js"
 
-class MessageRepository {
+export class MessageRepository {
     constructor(messagesDao) {
         this.dao = messagesDao
     }
@@ -15,4 +15,3 @@ class MessageRepository {
     }
 }
 
-module.exports = MessageRepository

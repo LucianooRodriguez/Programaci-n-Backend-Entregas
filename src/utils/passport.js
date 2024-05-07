@@ -1,6 +1,6 @@
-const passport = require("passport")
+import passport from "passport"
 
-const passportCall = (strategy) => {
+export const passportCall = (strategy) => {
     return async (req, res, next) => {
         passport.authenticate(strategy, function (err, user, info) {
 
@@ -16,7 +16,7 @@ const passportCall = (strategy) => {
     }
 }
 
-const authorization = (rol) => {
+export const authorization = (rol) => {
     return async (req, res, next) => {
         if (!req.session) return res.status(401).send({ err: "Unauthorized" })
         if (req.session.rol != rol) return res.status(403).send({ err: "No permissions" })
@@ -24,5 +24,3 @@ const authorization = (rol) => {
         next()
     }
 }
-
-module.exports = { passportCall, authorization }

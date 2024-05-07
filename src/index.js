@@ -1,30 +1,32 @@
-const express = require("express")
-const path = require("path")
-const handlebars = require('express-handlebars')
-const session = require("express-session")
-const passport = require("passport")
-const MongoStore = require("connect-mongo")
-const cookieParser = require('cookie-parser')
+import express from "express"
+import path from "path"
+import handlebars from 'express-handlebars'
+import session from "express-session"
+import passport from "passport"
+import MongoStore from "connect-mongo"
+import cookieParser from 'cookie-parser'
+import { dirname } from "path"
+import {CONFIG} from "./config/config.js"
+import { initializePassport } from "./config/passport/passport.js"
+import { addLogger } from "./middlewares/logger.middleware.js"
+import { errMiddleware } from "./middlewares/errors.middleware.js"
 
-const CONFIG = require("./config/config")
-const { initializePassport } = require("./config/passport/passport")
-const { addLogger } = require("./middlewares/logger.middleware")
-const errMiddleware = require("./middlewares/errors.middleware")
 
+import swaggerJSDoc from 'swagger-jsdoc'
+import swaggerUIExpress from "swagger-ui-express"
 
-const swaggerJSDoc = require('swagger-jsdoc')
-const swaggerUIExpress = require("swagger-ui-express")
-
-const cluster = require('cluster')
-const { cpus } = require("os")
+import cluster from 'cluster'
+import { cpus } from "os"
+import { router as appRouter } from "./routing/app.router.js"
 
 if (cluster.isPrimary) {
     for (let i = 1; i <= cpus().length; i++) {
         cluster.fork()
     }
 } else {
+    
     const app = express()
-    const appRouter = require("./routing/app.router")
+    
     app.use(express.json())
     app.use(express.urlencoded({ express: true }))
 
@@ -38,7 +40,7 @@ if (cluster.isPrimary) {
     }))
 
     //public
-    app.use(express.static(path.resolve(__dirname, "../src/public")))
+    app.use(express.static(path.resolve(dirname, "../src/public")))
 
     //Passport
     initializePassport()
@@ -71,7 +73,7 @@ if (cluster.isPrimary) {
                 }
             }
         },
-        apis: [`${__dirname}/docs/**/*.yaml`]
+        apis: [`${dirname}/docs/**/*.yaml`]
     }
 
     const specs = swaggerJSDoc(swaggerOptions)

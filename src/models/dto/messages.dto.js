@@ -1,4 +1,4 @@
-class SaveMessageDTO {
+export class SaveMessageDTO {
     constructor(payload) {
         this.user = payload.user
         this.message = payload.message
@@ -6,4 +6,3 @@ class SaveMessageDTO {
     }
 }
 
-module.exports = SaveMessageDTO

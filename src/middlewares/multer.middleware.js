@@ -1,7 +1,7 @@
-const multer = require('multer')
-const path = require('path')
+import multer from 'multer'
+import path from 'path'
 
-const storage = multer.diskStorage({
+export const storage = multer.diskStorage({
     destination: (req, file, callback ) => {
         callback(null, path.resolve( __dirname, '../public/images' ))
     }, //donde almacenamos los archivos cuando un usuario sube un archivo
@@ -9,5 +9,3 @@ const storage = multer.diskStorage({
         callback( null, file.originalname )
     } //nombre que va a tener ese archivo
 })
-
-module.exports = multer({ storage })

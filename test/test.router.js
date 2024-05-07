@@ -1,6 +1,6 @@
-const { Router } = require("express")
+import { Router } from "express"
 
-const router = Router()
+export const router = Router()
 
 router.get("/", (req,res) => {
     res.send({msg: "ok"})
@@ -22,4 +22,3 @@ router.get("/loggerTest", (req,res) => {
     req.logger.fatal("Test Fatal")
 })
 
-module.exports = router

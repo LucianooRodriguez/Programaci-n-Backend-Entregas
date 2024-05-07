@@ -1,18 +1,20 @@
-const CONFIG = require("../../config/config")
-const MessageRepository = require("../repositories/messages.repository")
+import { CONFIG } from "../../config/config.js"
+import { MessageRepository} from"../repositories/messages.repository.js"
 
+import {MessagesMongoDao} from "../dao/mongo/messages.mongo.dao.js"
+import {MessagesMemoryDao} from "../dao/memory/messages.memory.dao.js"
 let messagesDao
 
-class MessageService {
+export class MessageService {
     constructor() {
         switch (CONFIG.DATASOURCE) {
             case "MEMORY": {
-                const MessagesMemoryDao = require("../dao/memory/messages.memory.dao")
+                
                 messagesDao = new MessagesMemoryDao()
                 break
             }
             case "MONGO": {
-                const MessagesMongoDao = require("../dao/mongo/messages.mongo.dao")
+                
                 messagesDao = new MessagesMongoDao()
                 break
             }
@@ -24,4 +26,3 @@ class MessageService {
     }
 } 
 
-module.exports = MessageService

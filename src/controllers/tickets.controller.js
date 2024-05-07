@@ -1,9 +1,9 @@
-const { errorResponse, successResponse } = require("../utils/utils")
-const TicketService = require("../models/services/tickets.service")
+import { successResponse } from "../utils/utils.js"
+import {TicketService} from "../models/services/tickets.service.js"
 
 const ticketService = new TicketService()
 
-class TicketController {
+export class TicketController {
     static getAll = async (req, res, next) => {
         try {
             const tickets = await ticketService.getAll()
@@ -27,5 +27,3 @@ class TicketController {
         }
     }
 }
-
-module.exports = TicketController

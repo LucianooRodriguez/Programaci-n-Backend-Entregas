@@ -1,19 +1,21 @@
-const CONFIG = require("../../config/config")
-const CartRepository = require("../repositories/carts.repository")
+import { CONFIG } from "../../config/config.js"
+import { CartRepository} from"../repositories/carts.repository.js"
 
 let cartsDao
-
-class CartService {
+import {CartsMongoDao} from "../dao/mongo/carts.mongo.dao.js"
+import {CartsMemoryDao} from "../dao/memory/carts.memory.dao.js"
+console.log (CONFIG)
+export class CartService {
 
     constructor() {
         switch (CONFIG.DATASOURCE) {
             case "MEMORY": {
-                const CartsMemoryDao = require("../dao/memory/carts.memory.dao")
+                
                 cartsDao = new CartsMemoryDao()
                 break
             }
             case "MONGO": {
-                const CartsMongoDao = require("../dao/mongo/carts.mongo.dao")
+                
                 cartsDao = new CartsMongoDao()
                 break
             }
@@ -24,5 +26,3 @@ class CartService {
         return new CartRepository(cartsDao)
     }
 } 
-
-module.exports = CartService

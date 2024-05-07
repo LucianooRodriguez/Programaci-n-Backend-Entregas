@@ -1,4 +1,4 @@
-class SaveUserDTO {
+export class SaveUserDTO {
     constructor(payload) {
         this.name = payload.name
         this.email = payload.email
@@ -9,4 +9,3 @@ class SaveUserDTO {
     }
 }
 
-module.exports = SaveUserDTO

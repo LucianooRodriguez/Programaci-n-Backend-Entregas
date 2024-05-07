@@ -1,6 +1,6 @@
-const SaveTicketDTO = require("../dto/tickets.dto")
+import {SaveTicketDTO }from "../dto/tickets.dto.js"
 
-class TicketRepository {
+export class TicketRepository {
     constructor(ticketsDao) {
         this.dao = ticketsDao
     }
@@ -15,4 +15,3 @@ class TicketRepository {
     }
 }
 
-module.exports = TicketRepository

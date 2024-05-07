@@ -1,10 +1,10 @@
-const { Router } = require('express')
-const router = Router()
+import { Router } from 'express'
+export const router = Router()
 
-const UserController = require("../../controllers/users.controller")
+import {UserController} from"../../controllers/users.controller.js"
 
-const { isAuthorized } = require("../../middlewares/jwt.middleware")
-const { applyPolicy } = require("../../middlewares/auth.middleware")
+
+import { applyPolicy } from "../../middlewares/auth.middleware.js"
 
 //Retorna todos los cart
 router.get('/', applyPolicy(["admin"]), UserController.getAll)
@@ -14,4 +14,3 @@ router.get("/:uid", UserController.getById)
 
 router.get("/cart/:uid", UserController.getCart)
 
-module.exports = router;

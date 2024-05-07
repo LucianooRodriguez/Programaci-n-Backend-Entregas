@@ -1,20 +1,20 @@
-const { Router } = require("express")
+import { Router } from "express"
 
-const cartsRouter = require("./carts/carts.router")
-const productsRouter = require("./products/products.router")
-const usersRouter = require("./users/users.router")
-const messagesRouter = require("./messages/messages.router")
-const authRouter = require("./auth/auth.router")
-const homeRouter = require("./home/home.router")
-const ticketsRouter = require("./tickets/tickets.router")
-const testRouter = require("../../test/test.router")
-const mailRouter = require("./mail/mail.router")
-const apidocsRouter = require("./apidocs/apidocs.router")
-const chatRouter = require("./chat/chat.router")
-const viewsRouter = require("./views/views.router")
+import {router as cartsRouter }from "./carts/carts.router.js"
+import {router as productsRouter} from "./products/products.router.js"
+import {router as usersRouter }from "./users/users.router.js"
+import{ router as messagesRouter }from "./messages/messages.router.js"
+import { router as authRouter }from "./auth/auth.router.js"
+import {router as homeRouter} from "./home/home.router.js"
+import {router as ticketsRouter} from "./tickets/tickets.router.js"
+import {router as testRouter} from "../../test/test.router.js"
+import {router as mailRouter} from "./mail/mail.router.js"
+import {router as apidocsRouter} from "./apidocs/apidocs.router.js"
+import {router as chatRouter} from "./chat/chat.router.js"
+import {router as viewsRouter} from "./views/views.router.js"
 
 
-const router = Router()
+export const router = Router()
 
 router.use("/", viewsRouter)
 router.use("/api/carts", cartsRouter)
@@ -28,5 +28,3 @@ router.use("/api/mail", mailRouter)
 router.use("/api/test", testRouter)
 router.use("/api/apidocs", apidocsRouter)
 router.use("/api/chat", chatRouter)
-
-module.exports = router

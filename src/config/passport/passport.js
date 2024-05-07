@@ -1,15 +1,12 @@
-const passport = require("passport")
+import passport from "passport"
 /* const LocalStrategy = require("passport-local") */
 
 /* JWT */
 
-const JwtStrategy = require("passport-jwt").Strategy
-const ExtractJwt = require("passport-jwt").ExtractJwt
+import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt"
 
-const userModel = require("../../models/schema/users.schema")
-const { createHash, isValidPassword } = require("../../utils/bcrypt")
 
-const initializePassport = () => {
+export const initializePassport = () => {
 
 
     passport.use("jwt", new JwtStrategy({
@@ -33,5 +30,3 @@ const cookieExtractor = (req) => {
 
     return token
 }
-
-module.exports = { initializePassport }

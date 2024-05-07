@@ -1,6 +1,6 @@
-const SaveCartDTO = require("../dto/users.dto")
+import {SaveUserDTO} from "../dto/users.dto.js"
 
-class UserRepository {
+export class UserRepository {
     constructor(usersDao) {
         this.dao = usersDao
     }
@@ -10,7 +10,7 @@ class UserRepository {
     }
 
     save = async (payload) => {
-        const userPayload = new SaveCartDTO(payload)
+        const userPayload = new SaveUserDTO(payload)
         return await this.dao.save(userPayload)
     }
 
@@ -30,5 +30,3 @@ class UserRepository {
         return await this.dao.updateById(userId, user)
     }
 }
-
-module.exports = UserRepository

@@ -1,11 +1,11 @@
-const { errorResponse, successResponse } = require("../utils/utils")
-const UserService = require("../models/services/users.service")
-const CartService = require("../models/services/carts.service")
+import { successResponse } from "../utils/utils.js"
+import {UserService} from "../models/services/users.service.js"
+import {CartService} from "../models/services/carts.service.js"
 
 const userService = new UserService()
 const cartService = new CartService()
 
-class UserController {
+export class UserController {
     static getAll = async (req, res, next) => {
         try {
             const users = await userService.getAll()
@@ -76,4 +76,3 @@ class UserController {
     }
 }
 
-module.exports = UserController

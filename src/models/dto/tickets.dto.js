@@ -1,6 +1,6 @@
-const crypto = require('crypto')
+import  crypto from 'crypto'
 
-class SaveTicketDTO {
+export class SaveTicketDTO {
     constructor(payload) {
         this.purchase_datetime = new Date().toLocaleString()
         this.amount = payload.amount
@@ -9,4 +9,3 @@ class SaveTicketDTO {
     }
 }
 
-module.exports = SaveTicketDTO

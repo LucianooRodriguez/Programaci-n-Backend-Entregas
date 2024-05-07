@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-require("./products.schema")
+import mongoose from 'mongoose'
+import './products.shema.js'
 
 const cartsCollection = "Carts"
 
@@ -26,6 +26,4 @@ cartSchema.pre("find",function() {
     this.populate("products.product")
 })
 
-const cartModel = mongoose.model(cartsCollection, cartSchema)
-
-module.exports = cartModel 
+export const cartModel = mongoose.model(cartsCollection, cartSchema)

@@ -1,7 +1,7 @@
-const cartModel = require('../../schema/carts.schema')
-const MongoManager = require("../../db/manager/mongo.manager")
+import {cartModel} from "../../schema/carts.schema.js"
+import {MongoManager} from "../../db/manager/mongo.manager.js"
 
-class CartsMongoDao {
+export class CartsMongoDao {
     constructor() {
         MongoManager.start()
     }
@@ -27,5 +27,3 @@ class CartsMongoDao {
         return await cartModel.deleteOne({ _id: cartId })
     }
 }
-
-module.exports = CartsMongoDao

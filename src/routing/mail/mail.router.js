@@ -1,13 +1,10 @@
-const { Router } = require('express')
-const router = Router()
+import { Router } from 'express'
+export const router = Router()
 
-const CONFIG = require("../../config/config")
+import{ CONFIG }from "../../config/config.js"
 
-const passport = require("passport")
-const nodemailer = require('nodemailer')
+import nodemailer from 'nodemailer'
 
-const { passportCall, authorization } = require("../../utils/passport")
-const { isAuthorized } = require("../../middlewares/jwt.middleware")
 
 
 const transport = nodemailer.createTransport({
@@ -36,4 +33,3 @@ router.get('/restore-password',  async (req, res) => {
     res.send({status:'success',result:"Email sent"})
 })
 
-module.exports = router

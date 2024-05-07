@@ -1,4 +1,4 @@
-class TicketsMemoryDao {
+export class TicketsMemoryDao {
     constructor() {
         this.tickets = []
     }
@@ -17,4 +17,3 @@ class TicketsMemoryDao {
     }
 }
 
-module.exports = TicketsMemoryDao

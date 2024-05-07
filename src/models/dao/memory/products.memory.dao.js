@@ -1,4 +1,4 @@
-class ProductsMemoryDao {
+export class ProductsMemoryDao {
     constructor() {
         this.products = []
     }
@@ -16,5 +16,3 @@ class ProductsMemoryDao {
         return await this.products.filter((item) => item.id == id)
     }
 }
-
-module.exports = ProductsMemoryDao

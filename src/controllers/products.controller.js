@@ -1,10 +1,10 @@
-const { errorResponse, successResponse } = require("../utils/utils")
+import { successResponse } from "../utils/utils.js"
 
-const ProductService = require("../models/services/products.service")
+import {  ProductService }from "../models/services/products.service.js"
 
 const productService = new ProductService()
 
-class ProductController {
+export class ProductController {
     static getAll = async (req, res, next) => {
 
         try {
@@ -90,4 +90,3 @@ class ProductController {
 
 }
 
-module.exports = ProductController

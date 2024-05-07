@@ -1,9 +1,9 @@
-const { errorResponse, successResponse } = require("../utils/utils")
-const MessageService = require("../models/services/messages.service")
+import { successResponse } from "../utils/utils.js"
+import {MessageService} from "../models/services/messages.service.js"
 
 const messageService = new MessageService()
 
-class MessageController {
+export class MessageController {
     static getAllMessages = async (req, res, next) => {
         try {
             const messages = await messageService.getAllMessages()
@@ -28,4 +28,3 @@ class MessageController {
     }
 }
 
-module.exports = MessageController

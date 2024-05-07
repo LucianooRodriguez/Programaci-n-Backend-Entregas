@@ -1,12 +1,10 @@
-const { errorResponse, successResponse } = require("../utils/utils")
 
-
-const ProductService = require("../models/services/products.service")
+import {ProductService} from"../models/services/products.service.js"
 
 const productService = new ProductService()
 
 
-class ViewsController {
+export class ViewsController {
 
     static products = async (req, res ) => {
         let products = await productService.getAll()
@@ -45,4 +43,3 @@ class ViewsController {
     }
 }
 
-module.exports = ViewsController

@@ -1,4 +1,4 @@
-class MessagesMemoryDao {
+export class MessagesMemoryDao {
     constructor(){
         this.messages = []
     }
@@ -13,4 +13,3 @@ class MessagesMemoryDao {
     }
 }
 
-module.exports = MessagesMemoryDao

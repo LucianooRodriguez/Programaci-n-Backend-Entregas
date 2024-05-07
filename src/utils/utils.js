@@ -1,11 +1,11 @@
-const successResponse = (data) => {
+export const successResponse = (data) => {
     return {
         success: true,
         payload: data
     }
 }
 
-const errorResponse = (message, error = null) => {
+export const errorResponse = (message, error = null) => {
     return {
         success: false,
         description: message,
@@ -13,7 +13,3 @@ const errorResponse = (message, error = null) => {
     }
 }
 
-module.exports = {
-    successResponse,
-    errorResponse
-}

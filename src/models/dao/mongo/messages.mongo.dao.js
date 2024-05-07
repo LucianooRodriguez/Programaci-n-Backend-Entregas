@@ -1,7 +1,7 @@
-const messageModel  = require('../../schema/messages.schema')
-const MongoManager = require("../../db/manager/mongo.manager")
+import {messageModel} from'../../schema/messages.schema.js'
+import {MongoManager} from "../../db/manager/mongo.manager.js"
 
-class MessagesMongoDao {
+export class MessagesMongoDao {
     constructor() {
         MongoManager.start()
     }
@@ -16,4 +16,3 @@ class MessagesMongoDao {
     }
 }
 
-module.exports = MessagesMongoDao
